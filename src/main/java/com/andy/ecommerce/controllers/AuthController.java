@@ -5,6 +5,7 @@ import com.andy.ecommerce.dtos.reponse.RegisterUserResponseDto;
 import com.andy.ecommerce.dtos.request.RegisterUserRequestDto;
 import com.andy.ecommerce.mappers.UserMapper;
 import com.andy.ecommerce.services.AuthService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,7 +20,7 @@ public class AuthController {
      private final UserMapper userMapper;
 
      @PostMapping("/register")
-    ApiResponse<RegisterUserResponseDto> registerUser(@RequestBody RegisterUserRequestDto registerUserRequestDto) {
+    ApiResponse<RegisterUserResponseDto> registerUser(@RequestBody @Valid RegisterUserRequestDto registerUserRequestDto) {
          var userRegistered = authService.registerUser(registerUserRequestDto);
          RegisterUserResponseDto registerUserResponseDto = userMapper.toRegisterUserResponseDto(userRegistered);
          return ApiResponse.<RegisterUserResponseDto>builder().result(registerUserResponseDto).build();
