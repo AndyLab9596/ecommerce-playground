@@ -30,6 +30,7 @@ public class AuthServiceImpl implements AuthService {
         if (user.getAddress() != null) {
             user.getAddress().setUser(user);
         }
+        // TODO: Send e-mail to new user
         return userRepository.save(user);
     }
 }

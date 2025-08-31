@@ -12,8 +12,15 @@ public class RegisterUserAddressRequestDto {
     @NotBlank(message = "REQUIRED_FIELD")
     private String street;
 
+    @NotBlank(message = "REQUIRED_FIELD")
     private String city;
+
+    @NotBlank(message = "REQUIRED_FIELD")
     private String state;
+
+    @NotBlank(message = "REQUIRED_FIELD")
     private String zipcode;
+
+    @NotBlank(message = "REQUIRED_FIELD")
     private String country;
 }
