@@ -2,6 +2,7 @@ package com.andy.ecommerce.controllers;
 
 import com.andy.ecommerce.dtos.reponse.ApiResponse;
 import com.andy.ecommerce.dtos.reponse.GetAllUsersResponseDto;
+import com.andy.ecommerce.dtos.reponse.GetMyInfoResponseDto;
 import com.andy.ecommerce.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,4 +23,9 @@ public class UserController {
     }
 
     // TODO: GET USER PAGINATION
+
+    @GetMapping("my-info")
+    public ApiResponse<GetMyInfoResponseDto> getMyInfo() {
+        return ApiResponse.<GetMyInfoResponseDto>builder().result(userService.getMyInfo()).build();
+    }
 }
