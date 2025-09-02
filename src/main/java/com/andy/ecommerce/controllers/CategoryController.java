@@ -1,9 +1,6 @@
 package com.andy.ecommerce.controllers;
 
-import com.andy.ecommerce.dtos.reponse.ApiResponse;
-import com.andy.ecommerce.dtos.reponse.CreateCategoryResponseDto;
-import com.andy.ecommerce.dtos.reponse.GetAllCategoriesResponseDto;
-import com.andy.ecommerce.dtos.reponse.UpdateEntityResponseDto;
+import com.andy.ecommerce.dtos.reponse.*;
 import com.andy.ecommerce.dtos.request.CreateCategoryRequestDto;
 import com.andy.ecommerce.dtos.request.UpdateCategoryRequestDto;
 import com.andy.ecommerce.services.CategoryService;
@@ -38,6 +35,15 @@ public class CategoryController {
     ApiResponse<List<GetAllCategoriesResponseDto>> getAllCategories() {
         return ApiResponse.<List<GetAllCategoriesResponseDto>>builder().result(
                 categoryService.getAllCategories()
+        ).build();
+    }
+
+    @GetMapping("/get-category-by-id/{categoryId}")
+    ApiResponse<GetCategoryByIdResponseDto> getCategoryById(
+            @PathVariable Long categoryId
+    ) {
+        return ApiResponse.<GetCategoryByIdResponseDto>builder().result(
+                categoryService.getCategoryById(categoryId)
         ).build();
     }
 }

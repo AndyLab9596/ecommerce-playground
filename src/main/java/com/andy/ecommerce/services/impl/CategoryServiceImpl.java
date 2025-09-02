@@ -2,6 +2,7 @@ package com.andy.ecommerce.services.impl;
 
 import com.andy.ecommerce.dtos.reponse.CreateCategoryResponseDto;
 import com.andy.ecommerce.dtos.reponse.GetAllCategoriesResponseDto;
+import com.andy.ecommerce.dtos.reponse.GetCategoryByIdResponseDto;
 import com.andy.ecommerce.dtos.reponse.UpdateEntityResponseDto;
 import com.andy.ecommerce.dtos.request.CreateCategoryRequestDto;
 import com.andy.ecommerce.dtos.request.UpdateCategoryRequestDto;
@@ -54,5 +55,15 @@ public class CategoryServiceImpl implements CategoryService {
                 .map(categoryMapper::toGetAllCategoriesResponseDto)
                 .toList();
         return categories;
+    }
+
+    @Override
+    public GetCategoryByIdResponseDto getCategoryById(Long categoryId) {
+        var foundCategory = categoryRepository
+                .findById(categoryId)
+                .map(categoryMapper::toGetCategoryByIdResponseDto)
+                .orElseThrow(() -> new AppException(ErrorCode.CATEGORY_NOT_FOUND));
+
+        return foundCategory;
     }
 }
