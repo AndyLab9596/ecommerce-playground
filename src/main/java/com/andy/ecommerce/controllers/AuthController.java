@@ -2,8 +2,10 @@ package com.andy.ecommerce.controllers;
 
 import com.andy.ecommerce.dtos.reponse.ApiResponse;
 import com.andy.ecommerce.dtos.reponse.AuthenticateResponseDto;
+import com.andy.ecommerce.dtos.reponse.IntrospectResponseDto;
 import com.andy.ecommerce.dtos.reponse.RegisterUserResponseDto;
 import com.andy.ecommerce.dtos.request.AuthenticateRequestDto;
+import com.andy.ecommerce.dtos.request.IntrospectRequestDto;
 import com.andy.ecommerce.dtos.request.RegisterUserRequestDto;
 import com.andy.ecommerce.mappers.UserMapper;
 import com.andy.ecommerce.services.AuthService;
@@ -33,5 +35,10 @@ public class AuthController {
          return ApiResponse.<AuthenticateResponseDto>builder().result(
                  authService.authenticate(authenticateRequestDto)
          ).build();
+     }
+
+     @PostMapping("/introspect")
+    ApiResponse<IntrospectResponseDto> introspect(@RequestBody @Valid IntrospectRequestDto introspectRequestDto) {
+         return ApiResponse.<IntrospectResponseDto>builder().result(authService.introspect(introspectRequestDto)).build();
      }
 }
