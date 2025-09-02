@@ -1,5 +1,6 @@
 package com.andy.ecommerce.mappers;
 
+import com.andy.ecommerce.dtos.reponse.GetAllUsersResponseDto;
 import com.andy.ecommerce.dtos.reponse.RegisterUserAddressResponseDto;
 import com.andy.ecommerce.dtos.reponse.RegisterUserResponseDto;
 import com.andy.ecommerce.dtos.request.RegisterUserAddressRequestDto;
@@ -16,4 +17,6 @@ public interface UserMapper {
 
     RegisterUserResponseDto toRegisterUserResponseDto(User user);
     RegisterUserAddressResponseDto toRegisterUserAddressResponseDto(Address address);
+
+    GetAllUsersResponseDto toGetAllUsersResponseDto(User user);
 }
