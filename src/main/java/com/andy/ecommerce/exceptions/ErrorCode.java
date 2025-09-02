@@ -14,6 +14,7 @@ public enum ErrorCode {
     REQUIRED_FIELD(1004, "Field {fieldName} is required", HttpStatus.BAD_REQUEST),
     USER_NOT_EXISTED(1005, "User not existed", HttpStatus.NOT_FOUND),
     UNAUTHENTICATED(1006, "Unauthenticated", HttpStatus.UNAUTHORIZED),
+    CATEGORY_NOT_FOUND(1007, "category not found", HttpStatus.NOT_FOUND),
     ;
 
     ErrorCode(int code, String message, HttpStatusCode statusCode) {
