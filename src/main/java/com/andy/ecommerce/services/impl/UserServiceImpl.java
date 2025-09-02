@@ -5,6 +5,7 @@ import com.andy.ecommerce.mappers.UserMapper;
 import com.andy.ecommerce.repositories.UserRepository;
 import com.andy.ecommerce.services.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public class UserServiceImpl implements UserService {
     private final UserMapper userMapper;
 
     @Override
+    @PreAuthorize("hasRole('ADMIN')")
     public List<GetAllUsersResponseDto> getAllUsers() {
         return userRepository.findAll().stream().map(userMapper::toGetAllUsersResponseDto).toList();
     }
