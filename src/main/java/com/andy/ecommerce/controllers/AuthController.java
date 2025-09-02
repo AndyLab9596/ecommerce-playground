@@ -1,7 +1,9 @@
 package com.andy.ecommerce.controllers;
 
 import com.andy.ecommerce.dtos.reponse.ApiResponse;
+import com.andy.ecommerce.dtos.reponse.AuthenticateResponseDto;
 import com.andy.ecommerce.dtos.reponse.RegisterUserResponseDto;
+import com.andy.ecommerce.dtos.request.AuthenticateRequestDto;
 import com.andy.ecommerce.dtos.request.RegisterUserRequestDto;
 import com.andy.ecommerce.mappers.UserMapper;
 import com.andy.ecommerce.services.AuthService;
@@ -24,5 +26,12 @@ public class AuthController {
          var userRegistered = authService.registerUser(registerUserRequestDto);
          RegisterUserResponseDto registerUserResponseDto = userMapper.toRegisterUserResponseDto(userRegistered);
          return ApiResponse.<RegisterUserResponseDto>builder().result(registerUserResponseDto).build();
+     }
+
+     @PostMapping("/authenticate")
+    ApiResponse<AuthenticateResponseDto> authenticate(@RequestBody @Valid AuthenticateRequestDto authenticateRequestDto) {
+         return ApiResponse.<AuthenticateResponseDto>builder().result(
+                 authService.authenticate(authenticateRequestDto)
+         ).build();
      }
 }
