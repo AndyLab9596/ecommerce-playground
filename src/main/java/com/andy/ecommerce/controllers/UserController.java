@@ -20,4 +20,6 @@ public class UserController {
     public ApiResponse<List<GetAllUsersResponseDto>> getAll() {
         return ApiResponse.<List<GetAllUsersResponseDto>>builder().result(userService.getAllUsers()).build();
     }
+
+    // TODO: GET USER PAGINATION
 }
